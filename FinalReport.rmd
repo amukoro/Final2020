@@ -28,6 +28,12 @@ A new  preventative vaccine (covid91) is under test in clinical trials. Given th
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
+```{r}
+DataF=filter(FinalData,sex=="gal")
+barchartGC(~infected + treatment,data=DataF)
+barchartGC(~infected + treatment,data=DataF, type="percent",main="gals")
+
+```
 
 
 # Discussion and Conclusion
