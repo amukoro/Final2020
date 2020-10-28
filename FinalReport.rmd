@@ -20,7 +20,7 @@ FinalData <- OldData %>% mutate(infected = recode(infected, aids = "covid", none
 
 A new  preventative vaccine (covid91) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine.
 
-$H_0$: The null hypothesis is that among the targe population, the vaccine has no effect on whether one contracts the virus or not.
+$H_0$: The null hypothesis is that among the target population, the vaccine has no effect on whether one contracts the virus or not.
 
 $H_A$: The alternative hypothesis is that among the target population, the vaccine has an effect on whether one contracts the virus or not.
 
@@ -33,6 +33,8 @@ Every question is of a cat~cat type
 # Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+##Graphical distriptive result
 
 ```{r}
 DataF=filter(FinalData,sex=="gal")
@@ -50,6 +52,52 @@ barchartGC(~infected + treatment,data=DataG, type="percent",main="guys")
 
 ```
 
+
+```{r}
+DataLGBTQ=filter(FinalData,LGBTQ=="gay")
+barchartGC(~infected + treatment,data=DataLGBTQ)
+barchartGC(~infected + treatment,data=DataLGBTQ, type="percent",main="gays")
+
+```
+
+
+```{r}
+DataU=filter(FinalData,DrugUser=="yes")
+barchartGC(~infected + treatment,data=DataU)
+barchartGC(~infected + treatment,data=DataU, type="percent",main="yes")
+
+```
+
+Among the DrugUser 30% who had the virus took the vaccine and 65% who had the virus did not take the vaccine. Comparing those who did not contract the virus to the DrugUser who did,it appears there is no significant difference between those who did or did not take the vaccine.
+
+##Numerical graphical summaries
+
+```{r}
+table1 <- xtabs(~infected + treatment,data=DataF)
+rowPerc(table1)
+colPerc(table1)
+```
+
+
+```{r}
+table1 <- xtabs(~infected + treatment,data=DataG)
+rowPerc(table1)
+colPerc(table1)
+```
+
+
+```{r}
+table1 <- xtabs(~infected + treatment,data=DataLGBTQ)
+rowPerc(table1)
+colPerc(table1)
+```
+
+
+```{r}
+table1 <- xtabs(~infected + treatment,data=DataU)
+rowPerc(table1)
+colPerc(table1)
+```
 
 # Discussion and Conclusion
 
