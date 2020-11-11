@@ -52,6 +52,7 @@ barchartGC(~infected + treatment,data=DataG, type="percent",main="guys")
 
 ```
 
+Among the males who contracted aides, twice as many took the placebo. Therefore, it appears that the vaccine does have an effect.
 
 ```{r}
 DataLGBTQ=filter(FinalData,LGBTQ=="gay")
@@ -60,11 +61,12 @@ barchartGC(~infected + treatment,data=DataLGBTQ, type="percent",main="gays")
 
 ```
 
+Among the gays that contracted aids, 
 
 ```{r}
 DataU=filter(FinalData,DrugUser=="yes")
 barchartGC(~infected + treatment,data=DataU)
-barchartGC(~infected + treatment,data=DataU, type="percent",main="yes")
+barchartGC(~infected + treatment,data=DataU, type="percent",main="DrugUser")
 
 ```
 
@@ -78,6 +80,11 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
 ```{r}
 table1 <- xtabs(~infected + treatment,data=DataG)
@@ -85,6 +92,11 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
 ```{r}
 table1 <- xtabs(~infected + treatment,data=DataLGBTQ)
@@ -98,6 +110,15 @@ table1 <- xtabs(~infected + treatment,data=DataU)
 rowPerc(table1)
 colPerc(table1)
 ```
+
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The fisher test shows the odds of getting covid-19 are 0.55 to 1. The confidence interval for the odd ratio is 0.36 to 0.82.
 
 # Discussion and Conclusion
 
